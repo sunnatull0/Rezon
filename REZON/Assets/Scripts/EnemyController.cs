@@ -8,6 +8,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float waitSeconds;
+    [SerializeField] private float[] waitSecondsMid;
+    [SerializeField] private float[] waitSecondsHard;
+    [SerializeField] private float[] waitSecondsHard2;
     [SerializeField] private float MidLevel;
     [SerializeField] private float HardLevel;
     [SerializeField] private float Hard2Level;
@@ -65,7 +68,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             Instantiate(enemyPrefab[Random.Range(0, 2)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(waitSeconds);
+            yield return new WaitForSeconds(Random.Range(waitSecondsMid[0], waitSecondsMid[1]));
         }
     }
     
@@ -74,7 +77,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             Instantiate(enemyPrefab[Random.Range(1, 3)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(waitSeconds);
+            yield return new WaitForSeconds(Random.Range(waitSecondsHard[0], waitSecondsHard[1]));
         }
     }
 
@@ -83,7 +86,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             Instantiate(enemyPrefab[Random.Range(2, 4)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(waitSeconds);
+            yield return new WaitForSeconds(Random.Range(waitSecondsHard2[0], waitSecondsHard2[1]));
         }
     }
 }

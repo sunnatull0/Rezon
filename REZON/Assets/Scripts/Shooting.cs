@@ -7,6 +7,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject bullet_prefab;
     [SerializeField] private GameObject middle;
     [SerializeField] private GameObject boss;
+    [SerializeField] private SpriteRenderer gunSprite;
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private Transform bullet_pos;
     [SerializeField] private int startBullets;
@@ -67,11 +68,13 @@ public class Shooting : MonoBehaviour
     {
         if (middle.transform.eulerAngles.z > 90f && middle.transform.eulerAngles.z < 270f && isRight)
         {
+            gunSprite.flipY = true;
             boss.transform.Rotate(0, 180, 0);
             isRight = false;
         }
         else if (middle.transform.eulerAngles.z < 90f && !isRight || middle.transform.eulerAngles.z > 270f && !isRight)
         {
+            gunSprite.flipY = false;
             boss.transform.Rotate(0, -180, 0);
             isRight = true;
         }

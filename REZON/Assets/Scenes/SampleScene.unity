@@ -322,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129933956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.86, y: 0.17, z: -0.07009427}
+  m_LocalPosition: {x: 14.5, y: 1.32, z: -0.07009427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -973,6 +973,15 @@ MonoBehaviour:
   - {fileID: 2051494498}
   - {fileID: 1402147167}
   waitSeconds: 2.2
+  waitSecondsMid:
+  - 1.9
+  - 2.1
+  waitSecondsHard:
+  - 1.9
+  - 2
+  waitSecondsHard2:
+  - 1.8
+  - 2
   MidLevel: 10
   HardLevel: 15
   Hard2Level: 20
@@ -1002,7 +1011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588943655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.6457, y: -1.5, z: 0}
+  m_LocalPosition: {x: 10.07, y: -0.62, z: 0}
   m_LocalScale: {x: 13.011, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1835,6 +1844,7 @@ MonoBehaviour:
   bullet_prefab: {fileID: 8806179232760589342, guid: 7ec8db82166bb0b4d8abf6dfaea66028, type: 3}
   middle: {fileID: 32929466}
   boss: {fileID: 342907378}
+  gunSprite: {fileID: 771531245}
   shootSound: {fileID: 8300000, guid: 4ad41664fbf29c24580634ddb8be8485, type: 3}
   bullet_pos: {fileID: 1069685604}
   startBullets: 30
@@ -1997,7 +2007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992915714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.0423, y: -1.5, z: 0}
+  m_LocalPosition: {x: -10.09, y: -0.7, z: 0}
   m_LocalScale: {x: 12.534625, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2241,7 +2251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051494497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.89, y: 0.17, z: -0.07009427}
+  m_LocalPosition: {x: -15.89, y: 1.37, z: -0.07009427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
