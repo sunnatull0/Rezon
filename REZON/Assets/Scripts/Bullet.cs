@@ -23,7 +23,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Head"))
         {
-            EnemyHealth enemyHealth = collision.transform.parent.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = collision.transform.root.GetComponent<EnemyHealth>();
+            //EnemyHealth enemyHealths = collision.transform.root.GetComponent<EnemyHealth>();
             enemyHealth.Damage(1f);
             if (enemyHealth.health > 0f)
             {
