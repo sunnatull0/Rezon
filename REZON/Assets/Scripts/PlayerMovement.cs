@@ -4,52 +4,38 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float radius;
-    [SerializeField] private Transform groundPosition;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform _groundPosition;
+    [SerializeField] private LayerMask _groundLayer;
 
-    private Rigidbody2D rb;
-    private float horInput;
-    private bool isGrounded;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _radius;
 
-    void Start()
+    private Rigidbody2D _rb;
+    private float _horInput;
+    private bool _isGrounded;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        horInput = Input.GetAxisRaw("Horizontal");
-        isGrounded = Physics2D.OverlapCircle(groundPosition.position, radius, groundLayer);
+        _horInput = Input.GetAxisRaw("Horizontal");
+        _isGrounded = Physics2D.OverlapCircle(_groundPosition.position, _radius, _groundLayer);
 
         Jump();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horInput * speed * Time.fixedDeltaTime, rb.velocity.y); //MOVE
+        _rb.velocity = new Vector2(_horInput * _speed * Time.fixedDeltaTime, _rb.velocity.y);
     }
 
-
-    void Jump()
+    private void Jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
-        {
-            rb.AddForce(transform.up * jumpForce);
-        }
-    }
-    
-    void Flip()
-    {
-        if(horInput > 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0f, transform.rotation.z));
-        } 
-        else if (horInput < 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180f, transform.rotation.z));
-        }
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && _isGrounded)
+            _rb.AddForce(transform.up * _jumpForce);
     }
 }

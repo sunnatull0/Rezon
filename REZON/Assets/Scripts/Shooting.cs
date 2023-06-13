@@ -4,88 +4,60 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet_prefab;
-    [SerializeField] private GameObject middle;
-    [SerializeField] private GameObject boss;
-    [SerializeField] private SpriteRenderer gunSprite;
-    [SerializeField] private AudioClip shootSound;
-    [SerializeField] private Transform bullet_pos;
-    [SerializeField] private int startBullets;
-    [SerializeField] private float bulletspeed;
-    [SerializeField] private float reloadTime;
+    [HideInInspector] public int Bullets;
 
-    private AudioSource audioSource;
-    private Camera camera;
-    private Vector2 mousePos;
-    private bool canShoot = true;
-    private bool isRight = true;
-    [HideInInspector] public int bullets;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private Transform _bulletPosition;
+    [SerializeField] private int _startAmmo;
+    [SerializeField] private float _bulletspeed;
+    [SerializeField] private float _reloadTime;
 
-    void Start()
+    private AudioSource _audioSource;
+    private bool _canShoot = true;
+
+    private void Start()
     {
-        bullets = startBullets;
-        audioSource = GetComponent<AudioSource>();
-        camera = Camera.main;
+        Bullets = _startAmmo;
+        _audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    private void Update()
     {
-        //MouseLook
-        mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
-        middle.transform.right = mousePos - new Vector2(middle.transform.position.x, middle.transform.position.y);
-
-        Rotations();
         Shoot();
 
-        //Reloading
-        if (Input.GetKeyDown(KeyCode.R) && bullets != startBullets && canShoot)
-        {
+        // Reloading
+        if (Input.GetKeyDown(KeyCode.R) && Bullets != _startAmmo && _canShoot)
             StartCoroutine(Reloading());
-        }
     }
 
-    void Shoot()
+    private void Shoot()
     {
-        if (Input.GetButtonDown("Fire1") && canShoot)
+        if (Input.GetButtonDown("Fire1") && _canShoot)
         {
-            audioSource.pitch = Random.Range(0.95f, 1.3f);
-            audioSource.PlayOneShot(shootSound);
+            Bullets--;
 
-            GameObject bullet = Instantiate(bullet_prefab, bullet_pos.position, bullet_pos.rotation);
+            // Bullet
+            GameObject bullet = Instantiate(_bulletPrefab, _bulletPosition.position, _bulletPosition.rotation);
             Rigidbody2D rbbullet = bullet.GetComponent<Rigidbody2D>();
-            rbbullet.AddForce(transform.right * bulletspeed, ForceMode2D.Impulse);
+            rbbullet.AddForce(transform.right * _bulletspeed, ForceMode2D.Impulse);
 
-            bullets--;
+            // Audio
+            _audioSource.pitch = Random.Range(0.95f, 1.3f);
+            _audioSource.PlayOneShot(_shootSound);
 
-            if (bullets <= 0)
-            {
+            // AutoReloading
+            if (Bullets <= 0)
                 StartCoroutine(Reloading());
-            }
         }
     }
 
-    void Rotations()
+    private IEnumerator Reloading()
     {
-        if (middle.transform.eulerAngles.z > 90f && middle.transform.eulerAngles.z < 270f && isRight)
-        {
-            gunSprite.flipY = true;
-            boss.transform.Rotate(0, 180, 0);
-            isRight = false;
-        }
-        else if (middle.transform.eulerAngles.z < 90f && !isRight || middle.transform.eulerAngles.z > 270f && !isRight)
-        {
-            gunSprite.flipY = false;
-            boss.transform.Rotate(0, -180, 0);
-            isRight = true;
-        }
-    }
-
-    IEnumerator Reloading()
-    {
-        canShoot = false;
-        yield return new WaitForSeconds(reloadTime);
-        canShoot = true;
-        bullets = startBullets;
+        _canShoot = false;
+        yield return new WaitForSeconds(_reloadTime);
+        _canShoot = true;
+        Bullets = _startAmmo;
     }
 
 }

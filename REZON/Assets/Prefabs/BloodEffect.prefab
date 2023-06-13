@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2756158527163852309}
   - component: {fileID: 3913981969779207173}
   m_Layer: 0
-  m_Name: Blood
+  m_Name: BloodEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

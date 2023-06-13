@@ -4475,13 +4475,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631f69002a16f84428ff2d8e67761515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 650
-  jumpForce: 1340
-  radius: 0.1
-  groundPosition: {fileID: 643375872}
-  groundLayer:
+  _groundPosition: {fileID: 643375872}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _speed: 650
+  _jumpForce: 1500
+  _radius: 0.1
 --- !u!81 &342907384
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5062,7 +5062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588943655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.0169, y: -0.5, z: 0}
+  m_LocalPosition: {x: 12.66, y: -0.5, z: 0}
   m_LocalScale: {x: 22.025776, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5601,7 +5601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069685604}
   m_Layer: 0
-  m_Name: BulletPos
+  m_Name: BulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24573,6 +24573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724885198}
   - component: {fileID: 1724885200}
+  - component: {fileID: 1724885202}
   - component: {fileID: 1724885201}
   m_Layer: 0
   m_Name: Gun
@@ -24589,7 +24590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724885197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.74999994, y: -0.041799884, z: 0}
+  m_LocalPosition: {x: 1, y: -0.041799884, z: 0}
   m_LocalScale: {x: 1.0945998, y: 0.35639998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24610,16 +24611,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebec32c8d035f34585d3c73dddf58b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 8806179232760589342, guid: 7ec8db82166bb0b4d8abf6dfaea66028, type: 3}
-  middle: {fileID: 32929466}
-  boss: {fileID: 342907378}
-  gunSprite: {fileID: 771531245}
-  shootSound: {fileID: 8300000, guid: 4ad41664fbf29c24580634ddb8be8485, type: 3}
-  bullet_pos: {fileID: 1069685604}
-  startBullets: 30
-  bulletspeed: 60
-  reloadTime: 1.6
-  bullets: 0
+  Bullets: 0
+  _bulletPrefab: {fileID: 8806179232760589342, guid: 7ec8db82166bb0b4d8abf6dfaea66028, type: 3}
+  _shootSound: {fileID: 8300000, guid: 4ad41664fbf29c24580634ddb8be8485, type: 3}
+  _bulletPosition: {fileID: 1069685604}
+  _startAmmo: 30
+  _bulletspeed: 60
+  _reloadTime: 1.6
 --- !u!82 &1724885201
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24716,6 +24714,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1724885202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724885197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1791cd669400a174e91115e99172aa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gunMiddle: {fileID: 32929466}
+  _mainObject: {fileID: 342907378}
+  _gunSprite: {fileID: 771531245}
 --- !u!1 &1832292048
 GameObject:
   m_ObjectHideFlags: 0

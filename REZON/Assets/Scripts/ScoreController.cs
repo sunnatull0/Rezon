@@ -15,7 +15,7 @@ public class ScoreController : MonoBehaviour
     void Update()
     {
         scoreText.text = score.ToString("F0");
-        bulletText.text = shootingScript.bullets.ToString();
+        bulletText.text = shootingScript.Bullets.ToString();
     }
 
     public void AddScore(float amount)
