@@ -4,32 +4,26 @@ using UnityEngine;
 
 public class AudioEffects : MonoBehaviour
 {
-    [SerializeField] private AudioClip hitSound;
-    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip _deathSound;
     
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
-    void Start()
+    private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void HitSound()
     {
-        audioSource.pitch = Random.Range(0.8f, 1.2f);
-        audioSource.PlayOneShot(hitSound);
+        _audioSource.pitch = Random.Range(0.8f, 1.2f);
+        _audioSource.PlayOneShot(_hitSound);
     }
 
     public void DeadSound()
     {
-        audioSource.pitch = Random.Range(0.8f, 1.2f);
-        audioSource.PlayOneShot(deathSound);
+        _audioSource.pitch = Random.Range(0.8f, 1.2f);
+        _audioSource.PlayOneShot(_deathSound);
     }
 
 }

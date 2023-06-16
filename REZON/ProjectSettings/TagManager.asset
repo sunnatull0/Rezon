@@ -21,8 +21,8 @@ TagManager:
   - Ground
   - Head
   - IgnoreCollider
-  - 
-  - 
+  - Door
+  - IgnoreWithDoor
   - 
   - 
   - 

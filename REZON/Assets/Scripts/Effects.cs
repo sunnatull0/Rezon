@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Effects : MonoBehaviour
 {
-    [SerializeField] GameObject blood;
+    [SerializeField] private GameObject _bloodEffect;
     
     public void EffectPlay(Vector2 position)
     {
-        Instantiate(blood, position, Quaternion.identity);
+        Instantiate(_bloodEffect, position, Quaternion.identity);
     }
 }

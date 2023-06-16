@@ -1,92 +1,104 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private ScoreController scoreController;
-    [SerializeField] private GameObject[] enemyPrefab;
-    [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private float waitSeconds;
-    [SerializeField] private float[] waitSecondsMid;
-    [SerializeField] private float[] waitSecondsHard;
-    [SerializeField] private float[] waitSecondsHard2;
-    [SerializeField] private float MidLevel;
-    [SerializeField] private float HardLevel;
-    [SerializeField] private float Hard2Level;
+    [SerializeField] private ScoreController _scoreController;
+    [SerializeField] private GameObject[] _enemyPrefab;
+    [SerializeField] private Transform[] _spawnPoints;
 
-    Coroutine easy;
-    Coroutine mid;
-    Coroutine hard;
-    Coroutine hard2;
+    [Header("COROUTINE WAIT TIMES")]
+    [SerializeField] private float _easyLevelWaiting;
+    [SerializeField] private float[] _midLevelWaiting;
+    [SerializeField] private float[] _hardLevelWaiting;
+    [SerializeField] private float[] _extremeLevelWaiting;
 
-    bool isDone1 = false;
-    bool isDone2 = false;
-    bool isDone3 = false;
+    [Header("MOVE TO LEVEL SCORES")]
+    [SerializeField] private float _scoreToMidLevel;
+    [SerializeField] private float _scoreToHardLevel;
+    [SerializeField] private float _scoreToExtremeLevel;
 
-    void Start()
+    private Coroutine _currentCoroutine;
+
+    private bool _isDone1 = false;
+    private bool _isDone2 = false;
+    private bool _isDone3 = false;
+
+    private void Start()
     {
-        easy = StartCoroutine(EnemySpawningEasy());
+        _currentCoroutine = StartCoroutine(EnemySpawningEasy());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(scoreController.score >= MidLevel && !isDone1)
+        if (_scoreController.Score >= _scoreToMidLevel && !_isDone1)
         {
-            StopCoroutine(easy);
-            mid = StartCoroutine(EnemySpawningMid());
-            isDone1 = true;
+            StartMidLevel();
+            _isDone1 = true;
         }
-        
-        if(scoreController.score >= HardLevel && !isDone2)
+        else if (_scoreController.Score >= _scoreToHardLevel && !_isDone2)
         {
-            StopCoroutine(mid);
-            hard = StartCoroutine(EnemySpawningHard());
-            isDone2 = true;
+            StartHardLevel();
+            _isDone2 = true;
         }
-        
-        if(scoreController.score >= Hard2Level && !isDone3)
+        else if (_scoreController.Score >= _scoreToExtremeLevel && !_isDone3)
         {
-            StopCoroutine(hard);
-            hard2 = StartCoroutine(EnemySpawningHard2());
-            isDone3 = true;
+            StartExtremeLevel();
+            _isDone3 = true;
         }
     }
 
-    IEnumerator EnemySpawningEasy()
+    private void StartMidLevel()
+    {
+        StopCoroutine(_currentCoroutine);
+        _currentCoroutine = StartCoroutine(EnemySpawningMid());
+    }
+
+    private void StartHardLevel()
+    {
+        StopCoroutine(_currentCoroutine);
+        _currentCoroutine = StartCoroutine(EnemySpawningHard());
+    }
+
+    private void StartExtremeLevel()
+    {
+        StopCoroutine(_currentCoroutine);
+        _currentCoroutine = StartCoroutine(EnemySpawningExtreme());
+    }
+
+    private IEnumerator EnemySpawningEasy()
     {
         while (true)
         {
-            Instantiate(enemyPrefab[0], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(waitSeconds);
+            Instantiate(_enemyPrefab[0], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(_easyLevelWaiting);
         }
     }
 
-    IEnumerator EnemySpawningMid()
+    private IEnumerator EnemySpawningMid()
     {
         while (true)
         {
-            Instantiate(enemyPrefab[Random.Range(0, 2)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(waitSecondsMid[0], waitSecondsMid[1]));
-        }
-    }
-    
-    IEnumerator EnemySpawningHard()
-    {
-        while (true)
-        {
-            Instantiate(enemyPrefab[Random.Range(1, 3)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(waitSecondsHard[0], waitSecondsHard[1]));
+            Instantiate(_enemyPrefab[Random.Range(0, 2)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(_midLevelWaiting[0], _midLevelWaiting[1]));
         }
     }
 
-    IEnumerator EnemySpawningHard2()
+    private IEnumerator EnemySpawningHard()
     {
         while (true)
         {
-            Instantiate(enemyPrefab[Random.Range(2, 4)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(waitSecondsHard2[0], waitSecondsHard2[1]));
+            Instantiate(_enemyPrefab[Random.Range(1, 3)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(_hardLevelWaiting[0], _hardLevelWaiting[1]));
+        }
+    }
+
+    private IEnumerator EnemySpawningExtreme()
+    {
+        while (true)
+        {
+            Instantiate(_enemyPrefab[Random.Range(2, 4)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(_extremeLevelWaiting[0], _extremeLevelWaiting[1]));
         }
     }
 }

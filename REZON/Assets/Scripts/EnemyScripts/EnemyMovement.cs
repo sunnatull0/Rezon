@@ -1,62 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] EnemySpeed enemycontrol;
-    [SerializeField] Transform headPos;
-    ScoreController scoreController;
-    Effects effects;
+    private EnemySpeed _enemySpeedScript;
 
-    private Rigidbody2D enemyRb;
-    private bool isDone = false;
+    private Rigidbody2D _enemyRb;
+    private bool _isDone = false;
 
-    void Start()
+    private void Start()
     {
-        scoreController = FindObjectOfType<ScoreController>();
-        effects = FindObjectOfType<Effects>();
-        enemyRb = GetComponent<Rigidbody2D>();
+        _enemySpeedScript = GetComponent<EnemySpeed>();
+        _enemyRb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         Flip();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        enemyRb.velocity = new Vector2(enemycontrol.enemySpeed * Time.deltaTime, enemyRb.velocity.y);
+        _enemyRb.velocity = new Vector2(_enemySpeedScript.enemySpeed * Time.deltaTime, _enemyRb.velocity.y);
     }
 
-    void Flip()
+    private void Flip()
     {
-        if (transform.position.x > 0f && !isDone)
+        if (transform.position.x > 0f && !_isDone)
         {
-            enemycontrol.enemySpeed = -enemycontrol.enemySpeed;
+            _enemySpeedScript.enemySpeed = -_enemySpeedScript.enemySpeed;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            isDone = true;
+            _isDone = true;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Finish"))
-        {
             GameOver();
-        }
     }
 
     public void GameOver()
     {
-        //Debug.Log("End");
+        Debug.Log("End");
     }
-
-    public void DeathEffects(float scoretoadd)
-    {
-        scoreController.AddScore(scoretoadd);
-        effects.EffectPlay(headPos.position);
-        Destroy(gameObject);
-    }
-
 }

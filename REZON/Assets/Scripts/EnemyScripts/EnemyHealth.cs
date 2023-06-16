@@ -1,34 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] EnemyMovement enemyMovement;
-    [SerializeField] public float health;
+    [SerializeField] private Transform _headPosition;
+    
+    public float Health;
+    private ScoreController _scoreController;
+    private Effects _effects;
+
+    private void Start()
+    {
+        _scoreController = FindObjectOfType<ScoreController>();
+        _effects = FindObjectOfType<Effects>();
+    }
 
     private void Update()
     {
-        if (health <= 0f && gameObject.tag == "one")
+        if (Health <= 0f && gameObject.tag == "one")
         {
-            enemyMovement.DeathEffects(1f);
+            Death(1f);
         }
-        else if (health <= 0f && gameObject.tag == "two")
+        else if (Health <= 0f && gameObject.tag == "two")
         {
-            enemyMovement.DeathEffects(2f);
+            Death(2f);
         }
-        else if (health <= 0f && gameObject.tag == "three")
+        else if (Health <= 0f && gameObject.tag == "three")
         {
-            enemyMovement.DeathEffects(3f);
+            Death(3f);
         }
-        else if (health <= 0f && gameObject.tag == "four")
+        else if (Health <= 0f && gameObject.tag == "four")
         {
-            enemyMovement.DeathEffects(4f);
+            Death(4f);
         }
     }
 
     public void Damage(float amount)
     {
-        health -= amount;
+        Health -= amount;
+    }
+
+    private void Death(float scoreToAdd)
+    {
+        _scoreController.AddScore(scoreToAdd);
+        _effects.EffectPlay(_headPosition.position);
+        Destroy(gameObject);
     }
 }

@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class ScoreController : MonoBehaviour
 {
-    [HideInInspector] public float score;
-    [SerializeField] TMP_Text scoreText;
-    [SerializeField] TMP_Text bulletText;
-    [SerializeField] Shooting shootingScript;
-    [SerializeField] float scoreSpeed;
+    [HideInInspector] public float Score;
+    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _bulletText;
+    [SerializeField] private Shooting _shootingScript;
 
-    void Update()
+    private void Update()
     {
-        scoreText.text = score.ToString("F0");
-        bulletText.text = shootingScript.Bullets.ToString();
+        _scoreText.text = Score.ToString("F0");
+        _bulletText.text = _shootingScript.Bullets.ToString();
     }
 
     public void AddScore(float amount)
     {
-        score += amount;
+        Score += amount;
     }
 }

@@ -1343,8 +1343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ff7486b71564aa0a89f0637276ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMovement: {fileID: 1014221296830502241}
-  health: 1
+  _headPosition: {fileID: 1014221295893982765}
+  Health: 1
 --- !u!114 &1014221296830502241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,8 +1357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12545fd18d3e6a4ca05b1344cf66d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemycontrol: {fileID: 1014221296830502240}
-  headPos: {fileID: 1014221295893982765}
 --- !u!114 &1014221296830502240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1371,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c512e077619caa04ebc1abca5d86d751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 180
+  enemySpeed: 210
 --- !u!1 &1014221296912934438
 GameObject:
   m_ObjectHideFlags: 0
