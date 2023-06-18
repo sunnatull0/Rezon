@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private GameObject _gunMiddle;
     [SerializeField] private GameObject _mainObject;
     [SerializeField] private SpriteRenderer _gunSprite;
-    
+
     private Camera _camera;
     private Vector2 _mousePosition;
     private bool _lookingRight = true;

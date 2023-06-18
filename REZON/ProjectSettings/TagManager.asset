@@ -11,6 +11,7 @@ TagManager:
   - two
   - three
   - four
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -45,9 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 2160986089
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Second
-    uniqueID: 2160986089
+  - name: Main
+    uniqueID: 907818301
     locked: 0
