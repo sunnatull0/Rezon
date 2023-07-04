@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private Transform _headPosition;
+    [SerializeField] private Transform _headPosition;   
+    [SerializeField] private GameObject _killAnimation;
     
     public float Health;
     private ScoreController _scoreController;
@@ -43,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
     {
         _scoreController.AddScore(scoreToAdd);
         _effects.EffectPlay(_headPosition.position);
+        Instantiate(_killAnimation, _headPosition.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

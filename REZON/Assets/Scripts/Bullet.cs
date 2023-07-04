@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _wallHitEffect;
+    [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private Gradient[] _gradients;
     private TrailRenderer _trailRenderer;
     private AudioEffects _audioEffects;
@@ -22,7 +23,10 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth = collision.transform.root.GetComponent<EnemyHealth>();
             enemyHealth.Damage(1f);
             if (enemyHealth.Health > 0f)
+            {
                 _audioEffects.HitSound();
+                Instantiate(_hitEffect, transform.position, Quaternion.identity);
+            }
             else
                 _audioEffects.DeadSound();
         }

@@ -1096,6 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _headPosition: {fileID: 352995144970138975}
+  _killAnimation: {fileID: 5321315614689528927, guid: 52e4b232f00a0b14b9424f3e3c45523b, type: 3}
   Health: 3
 --- !u!114 &352995144815414316
 MonoBehaviour:
@@ -1121,7 +1122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c512e077619caa04ebc1abca5d86d751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 240
+  enemySpeed: 250
 --- !u!1 &352995144940152765
 GameObject:
   m_ObjectHideFlags: 0

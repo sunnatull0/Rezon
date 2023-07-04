@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private GameObject _levelUpUI;
+
     [SerializeField] private ScoreController _scoreController;
     [SerializeField] private GameObject[] _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
@@ -23,6 +25,9 @@ public class EnemyController : MonoBehaviour
     private bool _isDone1 = false;
     private bool _isDone2 = false;
     private bool _isDone3 = false;
+    private bool _levelUpDone1 = false;
+    private bool _levelUpDone2 = false;
+    private bool _levelUpDone3 = false;
 
     private void Start()
     {
@@ -79,6 +84,12 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+            if (!_levelUpDone1)
+            {
+                GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
+                levelUp.GetComponent<AudioSource>().pitch = 1f;
+                _levelUpDone1 = true;
+            }
             Instantiate(_enemyPrefab[Random.Range(0, 2)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(_midLevelWaiting[0], _midLevelWaiting[1]));
         }
@@ -88,6 +99,12 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+            if (!_levelUpDone2)
+            {
+                GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
+                levelUp.GetComponent<AudioSource>().pitch = 1.2f;
+                _levelUpDone2 = true;
+            }
             Instantiate(_enemyPrefab[Random.Range(1, 3)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(_hardLevelWaiting[0], _hardLevelWaiting[1]));
         }
@@ -97,6 +114,12 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+            if (!_levelUpDone3)
+            {
+                GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
+                levelUp.GetComponent<AudioSource>().pitch = 1.4f;
+                _levelUpDone3 = true;
+            }
             Instantiate(_enemyPrefab[Random.Range(2, 4)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(_extremeLevelWaiting[0], _extremeLevelWaiting[1]));
         }
