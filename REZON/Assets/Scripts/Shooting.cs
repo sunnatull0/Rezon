@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
 
     [SerializeField] private AudioClip _shootSound;
     [SerializeField] private AudioClip _noAmmoSound;
+    [SerializeField] private AudioClip _reloadSound;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Transform _bulletPosition;
@@ -69,10 +70,11 @@ public class Shooting : MonoBehaviour
 
     private IEnumerator Reloading()
     {
-        //_canShoot = false;
         _isReloading = true;
+        _audioSource.PlayOneShot(_reloadSound);
+
         yield return new WaitForSeconds(_reloadTime);
-        //_canShoot = true;
+
         _isReloading = false;
         Bullets = _startAmmo;
     }

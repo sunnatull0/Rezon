@@ -87,7 +87,7 @@ public class EnemyController : MonoBehaviour
             if (!_levelUpDone1)
             {
                 GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
-                levelUp.GetComponent<AudioSource>().pitch = 1f;
+                levelUp.GetComponent<AudioSource>().pitch = 0.8f;
                 _levelUpDone1 = true;
             }
             Instantiate(_enemyPrefab[Random.Range(0, 2)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
             if (!_levelUpDone2)
             {
                 GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
-                levelUp.GetComponent<AudioSource>().pitch = 1.2f;
+                levelUp.GetComponent<AudioSource>().pitch = 0.9f;
                 _levelUpDone2 = true;
             }
             Instantiate(_enemyPrefab[Random.Range(1, 3)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
             if (!_levelUpDone3)
             {
                 GameObject levelUp = Instantiate(_levelUpUI, transform.position, Quaternion.identity);
-                levelUp.GetComponent<AudioSource>().pitch = 1.4f;
+                levelUp.GetComponent<AudioSource>().pitch = 1f;
                 _levelUpDone3 = true;
             }
             Instantiate(_enemyPrefab[Random.Range(2, 4)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);

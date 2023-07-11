@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private GameOverScript _gameOverScript;
     private EnemySpeed _enemySpeedScript;
-
     private Rigidbody2D _enemyRb;
+
     private bool _isDone = false;
+    private bool _isDone1 = false;
 
     private void Start()
     {
+        _gameOverScript = FindObjectOfType<GameOverScript>();
         _enemySpeedScript = GetComponent<EnemySpeed>();
         _enemyRb = GetComponent<Rigidbody2D>();
     }
@@ -35,12 +38,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Finish"))
-            GameOver();
-    }
-
-    public void GameOver()
-    {
-        Debug.Log("End");
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Finish")) && !_isDone1)
+        {
+            _gameOverScript.GameOver();
+            _isDone1 = true;
+        }
     }
 }

@@ -6,15 +6,16 @@ public class LevelTransition : MonoBehaviour
 {
     [SerializeField] private Animator _animatior;
 
-    public void LoadNextLevel(int levelIndex)
+    public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(levelIndex));
+        StartCoroutine(LoadLevel());
     }
 
-    private IEnumerator LoadLevel(int sceneIndex)
+    private IEnumerator LoadLevel()
     {
+        Time.timeScale = 1;
         _animatior.SetTrigger("Transition");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(1);
     }
 }

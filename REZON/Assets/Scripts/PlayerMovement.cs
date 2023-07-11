@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Transform _groundPosition;
     [SerializeField] private LayerMask _groundLayer;
+    private AudioSource _audio;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -34,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && _isGrounded)
+        {
+            _audio.pitch = Random.Range(0.8f, 1.2f);
+            _audio.Play();
             _rb.AddForce(transform.up * _jumpForce);
+        }
     }
 }

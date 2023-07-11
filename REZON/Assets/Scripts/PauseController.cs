@@ -1,22 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseController : MonoBehaviour
 {
     [SerializeField] private Shooting _shootingScript;
     [SerializeField] private MouseLook _mouseLookScript;
+    [SerializeField] private GameOverScript _gameOverScript;
+    [SerializeField] private TutorialScript _tutorialScript;
+    [SerializeField] private AudioSource _audio;
     [SerializeField] private GameObject _pausePanel;
     private bool _isPaused = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_gameOverScript.IsPlaying && !_tutorialScript.TutPlaying)
             Pause();
     }
 
     public void Pause()
     {
+        _audio.Play();
         if (!_isPaused)
         {
             _shootingScript.enabled = false;

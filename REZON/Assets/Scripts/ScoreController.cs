@@ -1,15 +1,15 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
 {
     [HideInInspector] public float Score;
-    [SerializeField] private float _record;
+
     [SerializeField] private Text _recordText;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _bulletText;
     [SerializeField] private Shooting _shootingScript;
+    private float _record; 
 
     private void Start()
     {
@@ -26,6 +26,7 @@ public class ScoreController : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Record", Score);
         }
+ 
     }
 
     public void AddScore(float amount)

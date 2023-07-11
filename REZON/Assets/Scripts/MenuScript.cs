@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField] private LevelTransition _levelTransition;
+    [SerializeField] private Text _recordText;
     [SerializeField] private AudioSource _audioSource;
     private bool _isMuted = false;
-    public void StartButton()
+
+    private void Start()
     {
-        _levelTransition.LoadNextLevel(1);
+        _recordText.text = PlayerPrefs.GetFloat("Record").ToString("F0");
     }
 
     public void MusicButton()
