@@ -47,7 +47,7 @@ public class Shooting : MonoBehaviour
             Bullets--;
 
             // ScreenShake
-            _impulse.GenerateImpulse(3.6f);
+            _impulse.GenerateImpulse(4f);
 
             // Bullet
             GameObject bullet = Instantiate(_bulletPrefab, _bulletPosition.position, _bulletPosition.rotation);

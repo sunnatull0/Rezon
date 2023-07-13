@@ -5466,7 +5466,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _speed: 650
-  _jumpForce: 1500
+  _jumpForce: 1600
   _radius: 0.1
 --- !u!81 &342907384
 AudioListener:
@@ -7301,17 +7301,17 @@ MonoBehaviour:
   - {fileID: 1402147167}
   _easyLevelWaiting: 2.2
   _midLevelWaiting:
+  - 1.5
   - 1.8
-  - 2.2
   _hardLevelWaiting:
   - 1.6
-  - 2.3
+  - 1.9
   _extremeLevelWaiting:
-  - 1.5
-  - 2
-  _scoreToMidLevel: 2
-  _scoreToHardLevel: 4
-  _scoreToExtremeLevel: 6
+  - 1.4
+  - 1.7
+  _scoreToMidLevel: 10
+  _scoreToHardLevel: 50
+  _scoreToExtremeLevel: 120
 --- !u!1 &616060831
 GameObject:
   m_ObjectHideFlags: 0
@@ -29083,7 +29083,7 @@ MonoBehaviour:
   _bulletPosition: {fileID: 1069685604}
   _startAmmo: 20
   _bulletspeed: 60
-  _reloadTime: 1.6
+  _reloadTime: 1.8
 --- !u!82 &1724885201
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29247,7 +29247,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: 0.07, z: 0}
+  m_DefaultVelocity: {x: 0, y: 0.1, z: 0}
 --- !u!1 &1741953013
 GameObject:
   m_ObjectHideFlags: 0
@@ -29878,7 +29878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootingScript: {fileID: 1724885200}
   _tutorialPanel: {fileID: 470141931}
-  _shownKey: juk
+  _shownKey: vfe
   TutPlaying: 0
 --- !u!1 &1934849545
 GameObject:
@@ -29890,6 +29890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1934849546}
   - component: {fileID: 1934849547}
+  - component: {fileID: 1934849548}
   m_Layer: 0
   m_Name: BackMusic
   m_TagString: Untagged
@@ -30008,6 +30009,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1934849548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934849545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ab9e4616c1bb643862469cc6697390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 1934849547}
 --- !u!1 &1937612202
 GameObject:
   m_ObjectHideFlags: 0

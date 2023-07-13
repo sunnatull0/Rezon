@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D _enemyRb;
 
     private bool _isDone = false;
-    private bool _isDone1 = false;
+    private static bool _isDone1 = false;
 
     private void Start()
     {
@@ -36,12 +36,18 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void ResetBool()
+    {
+        _isDone1 = false;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Finish")) && !_isDone1)
         {
-            _gameOverScript.GameOver();
             _isDone1 = true;
+            _gameOverScript.GameOver();
+            Invoke(nameof(ResetBool), 1f);
         }
     }
 }

@@ -90,7 +90,7 @@ public class EnemyController : MonoBehaviour
                 levelUp.GetComponent<AudioSource>().pitch = 0.8f;
                 _levelUpDone1 = true;
             }
-            Instantiate(_enemyPrefab[Random.Range(0, 2)], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            Instantiate(_enemyPrefab[1], _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(_midLevelWaiting[0], _midLevelWaiting[1]));
         }
     }
