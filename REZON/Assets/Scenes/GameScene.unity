@@ -7304,11 +7304,11 @@ MonoBehaviour:
   - 1.5
   - 1.8
   _hardLevelWaiting:
-  - 1.6
-  - 1.9
-  _extremeLevelWaiting:
   - 1.4
-  - 1.7
+  - 1.8
+  _extremeLevelWaiting:
+  - 1.2
+  - 1.6
   _scoreToMidLevel: 10
   _scoreToHardLevel: 50
   _scoreToExtremeLevel: 120
